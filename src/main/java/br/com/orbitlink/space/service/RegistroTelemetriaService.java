@@ -46,4 +46,9 @@ public class RegistroTelemetriaService {
         return registroTelemetriaRepository.buscarTodosComAtivo().stream().map(this::toResponse).toList();
     }
 
+        @Transactional(readOnly = true)
+    public List<RegistroTelemetriaResponse> listarPorAtivoId(Long ativoId) {
+        return registroTelemetriaRepository.buscarPorAtivoId(ativoId).stream().map(this::toResponse).toList();
+    }
+
 }
