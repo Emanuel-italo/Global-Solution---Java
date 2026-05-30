@@ -20,5 +20,9 @@ import java.time.LocalDateTime;
 @Table(name = "TBL_ALERTA_ORBITAL")
 public class AlertaOrbital {
 
-    
+    @Id
+    @SequenceGenerator(name = "seq_alerta_orbital", sequenceName = "SEQ_ALERTA_ORBITAL", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_alerta_orbital")
+    @Column(name = "ID")
+    private Long id;
 }
