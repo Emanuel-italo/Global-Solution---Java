@@ -32,6 +32,9 @@ public class ManutencaoOrbital {
     @Column(name = "DESCRICAO", nullable = false, length = 2000)
     private String descricao;
 
+    @Column(name = "CUSTO_ESTIMADO", precision = 14, scale = 2)
+    private BigDecimal custoEstimado;
+
     
 
 }
