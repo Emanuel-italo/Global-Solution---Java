@@ -4,7 +4,7 @@ import br.com.orbitlink.space.dto.AtivoEspacialRequest;
 import br.com.orbitlink.space.dto.AtivoEspacialResponse;
 import br.com.orbitlink.space.entity.AtivoEspacial;
 import br.com.orbitlink.space.exception.EntidadeNaoLocalizadaException;
-import br.com.orbitlink.space.repository.AtivoEspacialDao;
+import br.com.orbitlink.space.repository.AtivoEspacialRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -13,10 +13,10 @@ import java.util.List;
 @Service
 public class AtivoEspacialService {
 
-    private final AtivoEspacialDao ativoEspacialDao;
+    private final AtivoEspacialRepository repository;
 
-    public AtivoEspacialService(AtivoEspacialDao ativoEspacialDao) {
-        this.ativoEspacialDao = ativoEspacialDao;
+    public AtivoEspacialService(AtivoEspacialRepository repository) {
+        this.repository = repository;
     }
 
     @Transactional
@@ -30,7 +30,8 @@ public class AtivoEspacialService {
         entidade.setEspecificacoesTecnicas(request.especificacoesTecnicas());
         entidade.setOperacional(request.operacional());
 
-        AtivoEspacial salvo = ativoEspacialDao.salvar(entidade);
+        // Agora usa o JpaRepository
+        AtivoEspacial salvo = repository.save(entidade);
         return toResponse(salvo);
     }
 
@@ -41,7 +42,7 @@ public class AtivoEspacialService {
 
     @Transactional(readOnly = true)
     public List<AtivoEspacialResponse> listarTodos() {
-        return ativoEspacialDao.listarTodos()
+        return repository.findAll() // Método nativo do JpaRepository
                 .stream()
                 .map(this::toResponse)
                 .toList();
@@ -58,20 +59,20 @@ public class AtivoEspacialService {
         entidade.setEspecificacoesTecnicas(request.especificacoesTecnicas());
         entidade.setOperacional(request.operacional());
 
-        return toResponse(ativoEspacialDao.atualizar(entidade));
+        return toResponse(repository.save(entidade)); // save funciona tanto para insert quanto para update
     }
 
     @Transactional
     public void descomissionar(Long id) {
-        if (!ativoEspacialDao.existePorId(id)) {
+        if (!repository.existsById(id)) {
             throw new EntidadeNaoLocalizadaException("Ativo espacial não encontrado com id " + id);
         }
-        ativoEspacialDao.descomissionar(id);
+        repository.descomissionarAtivo(id);
     }
 
     @Transactional(readOnly = true)
     public AtivoEspacial buscarEntidadeOuFalhar(Long id) {
-        return ativoEspacialDao.buscarPorId(id)
+        return repository.findById(id)
                 .orElseThrow(() -> new EntidadeNaoLocalizadaException("Ativo espacial não encontrado com id " + id));
     }
 
