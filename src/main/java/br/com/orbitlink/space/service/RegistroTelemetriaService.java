@@ -60,6 +60,9 @@ public class RegistroTelemetriaService {
         entidade.setDataRegistro(request.dataRegistro());
         entidade.setClima(request.clima());
         entidade.setSinal(request.sinal());
+        entidade.setLatitude(request.latitude());
+        entidade.setLongitude(request.longitude());
+        entidade.setObservacaoGps(gerarObservacaoGps(request));
     
     
     }
