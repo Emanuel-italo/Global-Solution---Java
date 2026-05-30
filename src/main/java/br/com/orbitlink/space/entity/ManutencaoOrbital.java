@@ -35,6 +35,17 @@ public class ManutencaoOrbital {
     @Column(name = "CUSTO_ESTIMADO", precision = 14, scale = 2)
     private BigDecimal custoEstimado;
 
+    public ManutencaoOrbital() {
+    }
+
+    public ManutencaoOrbital(Long id, AtivoEspacial ativoEspacial, LocalDateTime dataManutencao, String descricao, BigDecimal custoEstimado) {
+        this.id = id;
+        this.ativoEspacial = ativoEspacial;
+        this.dataManutencao = dataManutencao;
+        this.descricao = descricao;
+        this.custoEstimado = custoEstimado;
+    }
+
     
 
 }
