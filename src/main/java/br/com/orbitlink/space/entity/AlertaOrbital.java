@@ -1,8 +1,5 @@
 package br.com.orbitlink.space.entity;
 
-import br.com.orbitlink.space.core.annotations.ChavePrimaria;
-import br.com.orbitlink.space.core.annotations.ColunaMapeada;
-import br.com.orbitlink.space.core.annotations.TabelaMapeada;
 import br.com.orbitlink.space.enums.CriticidadeAlertaEnum;
 import br.com.orbitlink.space.enums.TipoAlertaEnum;
 import jakarta.persistence.Column;
@@ -21,109 +18,7 @@ import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "TBL_ALERTA_ORBITAL")
-@TabelaMapeada(nome = "TBL_ALERTA_ORBITAL")
 public class AlertaOrbital {
 
-    @Id
-    @ChavePrimaria
-    @SequenceGenerator(name = "seq_alerta_orbital", sequenceName = "SEQ_ALERTA_ORBITAL", allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_alerta_orbital")
-    @ColunaMapeada(nome = "ID")
-    @Column(name = "ID")
-    private Long id;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "ATIVO_ID", nullable = false)
-    private AtivoEspacial ativoEspacial;
-
-    @Enumerated(EnumType.STRING)
-    @ColunaMapeada(nome = "TIPO_ALERTA")
-    @Column(name = "TIPO_ALERTA", nullable = false, length = 60)
-    private TipoAlertaEnum tipoAlerta;
-
-    @Enumerated(EnumType.STRING)
-    @ColunaMapeada(nome = "CRITICIDADE")
-    @Column(name = "CRITICIDADE", nullable = false, length = 20)
-    private CriticidadeAlertaEnum criticidade;
-
-    @ColunaMapeada(nome = "MENSAGEM")
-    @Column(name = "MENSAGEM", nullable = false, length = 2000)
-    private String mensagem;
-
-    @ColunaMapeada(nome = "DATA_GERACAO")
-    @Column(name = "DATA_GERACAO", nullable = false)
-    private LocalDateTime dataGeracao;
-
-    @ColunaMapeada(nome = "RESOLVIDO")
-    @Column(name = "RESOLVIDO", nullable = false)
-    private Boolean resolvido = Boolean.FALSE;
-
-    public AlertaOrbital() {
-    }
-
-    public AlertaOrbital(Long id, AtivoEspacial ativoEspacial, TipoAlertaEnum tipoAlerta, CriticidadeAlertaEnum criticidade, String mensagem, LocalDateTime dataGeracao, Boolean resolvido) {
-        this.id = id;
-        this.ativoEspacial = ativoEspacial;
-        this.tipoAlerta = tipoAlerta;
-        this.criticidade = criticidade;
-        this.mensagem = mensagem;
-        this.dataGeracao = dataGeracao;
-        this.resolvido = resolvido;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public AtivoEspacial getAtivoEspacial() {
-        return ativoEspacial;
-    }
-
-    public void setAtivoEspacial(AtivoEspacial ativoEspacial) {
-        this.ativoEspacial = ativoEspacial;
-    }
-
-    public TipoAlertaEnum getTipoAlerta() {
-        return tipoAlerta;
-    }
-
-    public void setTipoAlerta(TipoAlertaEnum tipoAlerta) {
-        this.tipoAlerta = tipoAlerta;
-    }
-
-    public CriticidadeAlertaEnum getCriticidade() {
-        return criticidade;
-    }
-
-    public void setCriticidade(CriticidadeAlertaEnum criticidade) {
-        this.criticidade = criticidade;
-    }
-
-    public String getMensagem() {
-        return mensagem;
-    }
-
-    public void setMensagem(String mensagem) {
-        this.mensagem = mensagem;
-    }
-
-    public LocalDateTime getDataGeracao() {
-        return dataGeracao;
-    }
-
-    public void setDataGeracao(LocalDateTime dataGeracao) {
-        this.dataGeracao = dataGeracao;
-    }
-
-    public Boolean getResolvido() {
-        return resolvido;
-    }
-
-    public void setResolvido(Boolean resolvido) {
-        this.resolvido = resolvido;
-    }
+    
 }
