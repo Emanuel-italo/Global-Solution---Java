@@ -41,5 +41,9 @@ public class RegistroTelemetriaService {
     public RegistroTelemetriaResponse buscarPorId(Long id) {
         return toResponse(buscarEntidadeOuFalhar(id));
     }
+        @Transactional(readOnly = true)
+    public List<RegistroTelemetriaResponse> listarTodos() {
+        return registroTelemetriaRepository.buscarTodosComAtivo().stream().map(this::toResponse).toList();
+    }
 
 }
