@@ -87,4 +87,18 @@ public class RegistroTelemetriaService {
         return observacao;
     }
 
+        private RegistroTelemetriaResponse toResponse(RegistroTelemetria entidade) {
+        return new RegistroTelemetriaResponse(
+                entidade.getId(),
+                entidade.getAtivoEspacial().getId(),
+                entidade.getAtivoEspacial().getNome(),
+                entidade.getDataRegistro(),
+                entidade.getClima(),
+                entidade.getSinal(),
+                entidade.getLatitude(),
+                entidade.getLongitude(),
+                0,
+                entidade.getObservacaoGps()
+        );
+    }
 }
