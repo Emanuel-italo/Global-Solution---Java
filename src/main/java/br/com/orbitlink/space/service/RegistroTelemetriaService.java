@@ -21,5 +21,21 @@ public class RegistroTelemetriaService {
         this.registroTelemetriaRepository = registroTelemetriaRepository;
         this.ativoEspacialService = ativoEspacialService;
     }
-    
+
+        @Transactional
+    public RegistroTelemetriaResponse criar(RegistroTelemetriaRequest request) {
+        AtivoEspacial ativo = ativoEspacialService.buscarEntidadeOuFalhar(request.ativoId());
+
+        RegistroTelemetria entidade = new RegistroTelemetria();
+        entidade.setAtivoEspacial(ativo);
+        entidade.setDataRegistro(request.dataRegistro());
+        entidade.setClima(request.clima());
+        entidade.setSinal(request.sinal());
+        entidade.setLatitude(request.latitude());
+        entidade.setLongitude(request.longitude());
+        entidade.setObservacaoGps(gerarObservacaoGps(request));
+
+        return toResponse(registroTelemetriaRepository.save(entidade));
+    }
+
 }
