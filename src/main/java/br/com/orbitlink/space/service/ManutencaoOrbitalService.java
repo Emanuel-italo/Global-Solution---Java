@@ -49,4 +49,18 @@ public class ManutencaoOrbitalService {
     public List<ManutencaoOrbitalResponse> listarPorAtivoId(Long ativoId) {
         return manutencaoOrbitalRepository.buscarPorAtivoId(ativoId).stream().map(this::toResponse).toList();
     }
+
+        @Transactional
+    public ManutencaoOrbitalResponse atualizar(Long id, ManutencaoOrbitalRequest request) {
+        ManutencaoOrbital entidade = buscarEntidadeOuFalhar(id);
+        AtivoEspacial ativo = ativoEspacialService.buscarEntidadeOuFalhar(request.ativoId());
+
+        entidade.setAtivoEspacial(ativo);
+        entidade.setDataManutencao(request.dataManutencao());
+        entidade.setDescricao(request.descricao());
+        entidade.setCustoEstimado(request.custoEstimado());
+
+        return toResponse(manutencaoOrbitalRepository.save(entidade));
+    }
+
 }
