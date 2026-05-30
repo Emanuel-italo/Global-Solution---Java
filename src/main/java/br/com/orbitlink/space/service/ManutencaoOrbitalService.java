@@ -63,4 +63,26 @@ public class ManutencaoOrbitalService {
         return toResponse(manutencaoOrbitalRepository.save(entidade));
     }
 
+        @Transactional
+    public void deletar(Long id) {
+        ManutencaoOrbital entidade = buscarEntidadeOuFalhar(id);
+        manutencaoOrbitalRepository.delete(entidade);
+    }
+
+    private ManutencaoOrbital buscarEntidadeOuFalhar(Long id) {
+        return manutencaoOrbitalRepository.buscarComAtivoPorId(id)
+                .orElseThrow(() -> new EntidadeNaoLocalizadaException("Manutenção orbital não encontrada com id " + id));
+    }
+
+    private ManutencaoOrbitalResponse toResponse(ManutencaoOrbital entidade) {
+        return new ManutencaoOrbitalResponse(
+                entidade.getId(),
+                entidade.getAtivoEspacial().getId(),
+                entidade.getAtivoEspacial().getNome(),
+                entidade.getDataManutencao(),
+                entidade.getDescricao(),
+                entidade.getCustoEstimado()
+        );
+    }
 }
+
