@@ -20,4 +20,8 @@ public class AtivoEspacial extends EquipamentoOrbital {
 
     @Embedded // Trazendo os atributos da classe CoordenadasEspaciais para esta tabela
     private CoordenadasEspaciais coordenadasAtuais;
+
+    // CORREÇÃO: Adicionado o campo 'operacional' para o método de descomissionar funcionar perfeitamente
+    @Column(name = "is_operacional", nullable = false)
+    private Boolean operacional = true;
 }
