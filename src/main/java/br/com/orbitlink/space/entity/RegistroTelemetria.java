@@ -43,4 +43,19 @@ public class RegistroTelemetria {
     @Column(name = "OBSERVACAO_GPS", length = 1000)
     private String observacaoGps;
 
+    public RegistroTelemetria() {
+    }
+
+    public RegistroTelemetria(Long id, AtivoEspacial ativoEspacial, LocalDateTime dataRegistro, String clima, String sinal, Double latitude, Double longitude, String observacaoGps) {
+        this.id = id;
+        this.ativoEspacial = ativoEspacial;
+        this.dataRegistro = dataRegistro;
+        this.clima = clima;
+        this.sinal = sinal;
+        this.latitude = latitude;
+        this.longitude = longitude;
+        this.observacaoGps = observacaoGps;
+    }
+
+
 }
