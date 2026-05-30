@@ -34,6 +34,22 @@ public class AlertaOrbitalService {
         entidade.setResolvido(request.resolvido());
 
         return toResponse(alertaOrbitalRepository.save(entidade));
+
+            @Transactional(readOnly = true)
+    public AlertaOrbitalResponse buscarPorId(Long id) {
+        return toResponse(buscarEntidadeOuFalhar(id));
+    }
+
+    @Transactional(readOnly = true)
+    public List<AlertaOrbitalResponse> listarTodos() {
+        return alertaOrbitalRepository.buscarTodosComAtivo().stream().map(this::toResponse).toList();
+    }
+
+    @Transactional(readOnly = true)
+    public List<AlertaOrbitalResponse> listarPorAtivoId(Long ativoId) {
+        return alertaOrbitalRepository.buscarPorAtivoId(ativoId).stream().map(this::toResponse).toList();
+    }
+    
     }
 
 
