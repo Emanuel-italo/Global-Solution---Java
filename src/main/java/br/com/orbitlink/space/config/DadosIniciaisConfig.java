@@ -30,8 +30,6 @@ public class DadosIniciaisConfig {
                 return;
             }
 
-        }
-
     // Ajustado para refletir o novo AtivoEspacialRequest
             AtivoEspacialResponse hub = ativoEspacialService.criar(new AtivoEspacialRequest(
                     "OrbitLink Hub-01",
@@ -63,3 +61,15 @@ public class DadosIniciaisConfig {
                     550, // Confirme se no seu projeto este campo é double ou int
                     "Telemetry health normal"
             ));
+
+            alertaOrbitalService.criar(new AlertaOrbitalRequest(
+                    scout.id(),
+                    TipoAlertaEnum.RISCO_COLISAO,
+                    CriticidadeAlertaEnum.ALTA,
+                    "Possível aproximação com microdetritos na órbita de transferência.",
+                    LocalDateTime.now().minusMinutes(35),
+                    false
+            ));
+        };
+    }
+}
