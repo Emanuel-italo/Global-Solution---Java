@@ -45,3 +45,21 @@ public class DadosIniciaisConfig {
                     TipoAtivoEnum.SONDA,
                     "Consórcio Espacial Sul-Americano"
             ));
+
+            manutencaoOrbitalService.criar(new ManutencaoOrbitalRequest(
+                    hub.id(),
+                    LocalDateTime.now().minusDays(7),
+                    "Correção de alinhamento solar e revisão de painéis de energia.",
+                    new BigDecimal("18500.00")
+            ));
+
+            registroTelemetriaService.criar(new RegistroTelemetriaRequest(
+                    hub.id(),
+                    LocalDateTime.now().minusHours(4),
+                    "Céu limpo com baixa interferência eletromagnética",
+                    "Sinal estável e em alta disponibilidade",
+                    -23.550520,
+                    -46.633308,
+                    550, // Confirme se no seu projeto este campo é double ou int
+                    "Telemetry health normal"
+            ));
