@@ -25,4 +25,14 @@ public class AlertaOrbital {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_alerta_orbital")
     @Column(name = "ID")
     private Long id;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "ATIVO_ID", nullable = false)
+    private AtivoEspacial ativoEspacial;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "TIPO_ALERTA", nullable = false, length = 60)
+    private TipoAlertaEnum tipoAlerta;
+
+
 }
