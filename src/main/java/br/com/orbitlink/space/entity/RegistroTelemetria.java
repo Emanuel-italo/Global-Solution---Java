@@ -27,4 +27,7 @@ public class RegistroTelemetria {
 
     @Column(name = "DATA_REGISTRO", nullable = false)
     private LocalDateTime dataRegistro;
+
+    @Column(name = "CLIMA", nullable = false, length = 120)
+    private String clima;
 }
