@@ -38,4 +38,7 @@ public class AlertaOrbital {
     @Column(name = "CRITICIDADE", nullable = false, length = 20)
     private CriticidadeAlertaEnum criticidade;
 
+    @Column(name = "MENSAGEM", nullable = false, length = 2000)
+    private String mensagem;
+
 }
