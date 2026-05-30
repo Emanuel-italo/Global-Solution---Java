@@ -3,30 +3,18 @@ package br.com.orbitlink.space.dto;
 import br.com.orbitlink.space.enums.TipoAtivoEnum;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Positive;
-import java.math.BigDecimal;
-import java.time.LocalDate;
+import jakarta.validation.constraints.Size;
 
 public record AtivoEspacialRequest(
-        @NotBlank(message = "O nome do ativo espacial é obrigatório.")
+        @NotBlank(message = "O nome não pode estar em branco")
+        @Size(max = 100, message = "O nome deve ter no máximo 100 caracteres")
         String nome,
 
-        @NotNull(message = "O tipo do ativo espacial é obrigatório.")
+        @NotNull(message = "O tipo do ativo é obrigatório")
         TipoAtivoEnum tipoAtivo,
 
-        @NotBlank(message = "A agência responsável é obrigatória.")
-        String agenciaResponsavel,
-
-        @NotNull(message = "A data de lançamento é obrigatória.")
-        LocalDate dataLancamento,
-
-        @NotNull(message = "A massa em kg é obrigatória.")
-        @Positive(message = "A massa em kg deve ser maior que zero.")
-        BigDecimal massaKg,
-
-        @NotBlank(message = "As especificações técnicas são obrigatórias.")
-        String especificacoesTecnicas,
-
-        @NotNull(message = "O status operacional é obrigatório.")
-        Boolean operacional
-) {}
+        @NotBlank(message = "O nome do proprietário é obrigatório")
+        @Size(max = 100, message = "O nome do proprietário deve ter no máximo 100 caracteres")
+        String agenciaResponsavel
+) {
+}
