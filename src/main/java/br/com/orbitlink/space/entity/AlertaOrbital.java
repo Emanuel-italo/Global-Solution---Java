@@ -73,6 +73,14 @@ public class AlertaOrbital {
         return ativoEspacial;
     }
 
+    public void setAtivoEspacial(AtivoEspacial ativoEspacial) {
+        this.ativoEspacial = ativoEspacial;
+    }
+
+    public TipoAlertaEnum getTipoAlerta() {
+        return tipoAlerta;
+    }
+
 
     
 
