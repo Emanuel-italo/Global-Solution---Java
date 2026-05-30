@@ -45,4 +45,8 @@ public class ManutencaoOrbitalService {
         return manutencaoOrbitalRepository.buscarTodosComAtivo().stream().map(this::toResponse).toList();
     }
 
+        @Transactional(readOnly = true)
+    public List<ManutencaoOrbitalResponse> listarPorAtivoId(Long ativoId) {
+        return manutencaoOrbitalRepository.buscarPorAtivoId(ativoId).stream().map(this::toResponse).toList();
+    }
 }
