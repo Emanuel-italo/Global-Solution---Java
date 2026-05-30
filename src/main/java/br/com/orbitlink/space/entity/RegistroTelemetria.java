@@ -20,4 +20,11 @@ public class RegistroTelemetria {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_registro_telemetria")
     @Column(name = "ID")
     private Long id;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "ATIVO_ID", nullable = false)
+    private AtivoEspacial ativoEspacial;
+
+    @Column(name = "DATA_REGISTRO", nullable = false)
+    private LocalDateTime dataRegistro;
 }
