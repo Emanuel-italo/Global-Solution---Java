@@ -14,6 +14,12 @@ import java.util.List;
 @Service
 public class ManutencaoOrbitalService {
 
+    private final ManutencaoOrbitalRepository manutencaoOrbitalRepository;
+    private final AtivoEspacialService ativoEspacialService;
 
-    
+    public ManutencaoOrbitalService(ManutencaoOrbitalRepository manutencaoOrbitalRepository, AtivoEspacialService ativoEspacialService) {
+        this.manutencaoOrbitalRepository = manutencaoOrbitalRepository;
+        this.ativoEspacialService = ativoEspacialService;
+    }
+
 }
