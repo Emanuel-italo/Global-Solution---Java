@@ -37,4 +37,7 @@ public class RegistroTelemetria {
     @Column(name = "LATITUDE", nullable = false)
     private Double latitude;
 
+    @Column(name = "LONGITUDE", nullable = false)
+    private Double longitude;
+
 }
