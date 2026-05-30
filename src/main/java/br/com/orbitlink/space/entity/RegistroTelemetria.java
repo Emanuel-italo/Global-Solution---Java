@@ -15,3 +15,9 @@ import java.time.LocalDateTime;
 @Entity
 @Table(name = "TBL_REGISTRO_TELEMETRIA")
 public class RegistroTelemetria {
+    @Id
+    @SequenceGenerator(name = "seq_registro_telemetria", sequenceName = "SEQ_REGISTRO_TELEMETRIA", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_registro_telemetria")
+    @Column(name = "ID")
+    private Long id;
+}
