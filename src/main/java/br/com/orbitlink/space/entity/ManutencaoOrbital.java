@@ -58,6 +58,22 @@ public class ManutencaoOrbital {
         return ativoEspacial;
     }
 
+    public void setAtivoEspacial(AtivoEspacial ativoEspacial) {
+        this.ativoEspacial = ativoEspacial;
+    }
+
+    public LocalDateTime getDataManutencao() {
+        return dataManutencao;
+    }
+
+    public void setDataManutencao(LocalDateTime dataManutencao) {
+        this.dataManutencao = dataManutencao;
+    }
+
+    public String getDescricao() {
+        return descricao;
+    }
+
     
 
 }
