@@ -26,6 +26,9 @@ public class ManutencaoOrbital {
     @JoinColumn(name = "ATIVO_ID", nullable = false)
     private AtivoEspacial ativoEspacial;
 
+    @Column(name = "DATA_MANUTENCAO", nullable = false)
+    private LocalDateTime dataManutencao;
+
     
 
 }
