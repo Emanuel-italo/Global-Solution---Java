@@ -34,5 +34,8 @@ public class AlertaOrbital {
     @Column(name = "TIPO_ALERTA", nullable = false, length = 60)
     private TipoAlertaEnum tipoAlerta;
 
+    @Enumerated(EnumType.STRING)
+    @Column(name = "CRITICIDADE", nullable = false, length = 20)
+    private CriticidadeAlertaEnum criticidade;
 
 }
