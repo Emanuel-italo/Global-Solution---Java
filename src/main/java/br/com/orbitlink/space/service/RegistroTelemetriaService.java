@@ -78,4 +78,13 @@ public class RegistroTelemetriaService {
                 .orElseThrow(() -> new EntidadeNaoLocalizadaException("Registro de telemetria não encontrado com id " + id));
     }
 
+        private String gerarObservacaoGps(RegistroTelemetriaRequest request) {
+        String observacao = request.observacaoGps();
+        if (observacao == null || observacao.isBlank()) {
+            return String.format("GPS orbitando em %.6f / %.6f com raio operacional %.0f km",
+                    request.latitude(), request.longitude(), request.distanciaOrbitalKm() == null ? 0.0 : request.distanciaOrbitalKm().doubleValue());
+        }
+        return observacao;
+    }
+
 }
