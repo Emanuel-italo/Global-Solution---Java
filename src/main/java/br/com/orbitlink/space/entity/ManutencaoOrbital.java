@@ -22,6 +22,9 @@ public class ManutencaoOrbital {
     @Column(name = "ID")
     private Long id;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "ATIVO_ID", nullable = false)
+    private AtivoEspacial ativoEspacial;
 
     
 
