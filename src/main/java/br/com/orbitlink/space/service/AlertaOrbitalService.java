@@ -64,7 +64,17 @@ public class AlertaOrbitalService {
 
         return toResponse(alertaOrbitalRepository.save(entidade));
     }
-    
+    @Transactional
+    public void deletar(Long id) {
+        AlertaOrbital entidade = buscarEntidadeOuFalhar(id);
+        alertaOrbitalRepository.delete(entidade);
+    }
+
+    private AlertaOrbital buscarEntidadeOuFalhar(Long id) {
+        return alertaOrbitalRepository.buscarComAtivoPorId(id)
+                .orElseThrow(() -> new EntidadeNaoLocalizadaException("Alerta orbital não encontrado com id " + id));
+    }
+
     }
 
 
