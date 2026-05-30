@@ -30,4 +30,8 @@ public class RegistroTelemetria {
 
     @Column(name = "CLIMA", nullable = false, length = 120)
     private String clima;
+
+    @Column(name = "SINAL", nullable = false, length = 120)
+    private String sinal;
+
 }
