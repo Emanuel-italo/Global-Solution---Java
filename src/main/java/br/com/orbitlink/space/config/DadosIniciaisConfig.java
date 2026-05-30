@@ -17,3 +17,17 @@ import java.time.LocalDateTime;
 
 @Configuration
 public class DadosIniciaisConfig {
+    
+    @Bean
+    CommandLineRunner popularBanco(
+            AtivoEspacialService ativoEspacialService,
+            ManutencaoOrbitalService manutencaoOrbitalService,
+            RegistroTelemetriaService registroTelemetriaService,
+            AlertaOrbitalService alertaOrbitalService
+    ) {
+        return args -> {
+            if (!ativoEspacialService.listarTodos().isEmpty()) {
+                return;
+            }
+
+        }
