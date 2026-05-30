@@ -22,15 +22,18 @@ public class AtivoEspacialService {
     @Transactional
     public AtivoEspacialResponse criar(AtivoEspacialRequest request) {
         AtivoEspacial entidade = new AtivoEspacial();
-        entidade.setNome(request.nome());
-        entidade.setTipoAtivo(request.tipoAtivo());
-        entidade.setAgenciaResponsavel(request.agenciaResponsavel());
-        entidade.setDataLancamento(request.dataLancamento());
-        entidade.setMassaKg(request.massaKg());
-        entidade.setEspecificacoesTecnicas(request.especificacoesTecnicas());
-        entidade.setOperacional(request.operacional());
+        
 
-        // Agora usa o JpaRepository
+        entidade.setNomeProprietario(request.agenciaResponsavel()); 
+        entidade.setNumeroDeSerie("SN-" + System.currentTimeMillis()); 
+        
+
+        entidade.setNome(request.nome());
+
+        entidade.setTipo(request.tipoAtivo());
+        
+
+
         AtivoEspacial salvo = repository.save(entidade);
         return toResponse(salvo);
     }
@@ -42,7 +45,7 @@ public class AtivoEspacialService {
 
     @Transactional(readOnly = true)
     public List<AtivoEspacialResponse> listarTodos() {
-        return repository.findAll() // Método nativo do JpaRepository
+        return repository.findAll()
                 .stream()
                 .map(this::toResponse)
                 .toList();
@@ -51,15 +54,13 @@ public class AtivoEspacialService {
     @Transactional
     public AtivoEspacialResponse atualizar(Long id, AtivoEspacialRequest request) {
         AtivoEspacial entidade = buscarEntidadeOuFalhar(id);
+        
         entidade.setNome(request.nome());
-        entidade.setTipoAtivo(request.tipoAtivo());
-        entidade.setAgenciaResponsavel(request.agenciaResponsavel());
-        entidade.setDataLancamento(request.dataLancamento());
-        entidade.setMassaKg(request.massaKg());
-        entidade.setEspecificacoesTecnicas(request.especificacoesTecnicas());
-        entidade.setOperacional(request.operacional());
+        entidade.setTipo(request.tipoAtivo());
 
-        return toResponse(repository.save(entidade)); // save funciona tanto para insert quanto para update
+        entidade.setNomeProprietario(request.agenciaResponsavel());
+
+        return toResponse(repository.save(entidade));
     }
 
     @Transactional
@@ -77,15 +78,16 @@ public class AtivoEspacialService {
     }
 
     private AtivoEspacialResponse toResponse(AtivoEspacial entidade) {
+
         return new AtivoEspacialResponse(
                 entidade.getId(),
                 entidade.getNome(),
-                entidade.getTipoAtivo(),
-                entidade.getAgenciaResponsavel(),
-                entidade.getDataLancamento(),
-                entidade.getMassaKg(),
-                entidade.getEspecificacoesTecnicas(),
-                entidade.getOperacional()
+                entidade.getTipo(),
+                entidade.getNomeProprietario(),
+                null, 
+                null, 
+                null, 
+                true  
         );
     }
 }
