@@ -34,4 +34,7 @@ public class RegistroTelemetria {
     @Column(name = "SINAL", nullable = false, length = 120)
     private String sinal;
 
+    @Column(name = "LATITUDE", nullable = false)
+    private Double latitude;
+
 }
