@@ -21,6 +21,21 @@ public class AlertaOrbitalService {
         this.alertaOrbitalRepository = alertaOrbitalRepository;
         this.ativoEspacialService = ativoEspacialService;
 
+    @Transactional
+    public AlertaOrbitalResponse criar(AlertaOrbitalRequest request) {
+        AtivoEspacial ativo = ativoEspacialService.buscarEntidadeOuFalhar(request.ativoId());
+
+        AlertaOrbital entidade = new AlertaOrbital();
+        entidade.setAtivoEspacial(ativo);
+        entidade.setTipoAlerta(request.tipoAlerta());
+        entidade.setCriticidade(request.criticidade());
+        entidade.setMensagem(request.mensagem());
+        entidade.setDataGeracao(request.dataGeracao());
+        entidade.setResolvido(request.resolvido());
+
+        return toResponse(alertaOrbitalRepository.save(entidade));
+    }
+
 
     }
 }
