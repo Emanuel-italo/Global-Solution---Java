@@ -14,5 +14,12 @@ import java.util.List;
 @Service
 public class RegistroTelemetriaService {
 
+    private final RegistroTelemetriaRepository registroTelemetriaRepository;
+    private final AtivoEspacialService ativoEspacialService;
+
+    public RegistroTelemetriaService(RegistroTelemetriaRepository registroTelemetriaRepository, AtivoEspacialService ativoEspacialService) {
+        this.registroTelemetriaRepository = registroTelemetriaRepository;
+        this.ativoEspacialService = ativoEspacialService;
+    }
     
 }
