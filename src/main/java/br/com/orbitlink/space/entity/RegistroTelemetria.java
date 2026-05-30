@@ -69,5 +69,21 @@ public class RegistroTelemetria {
         return ativoEspacial;
     }
 
+    public void setAtivoEspacial(AtivoEspacial ativoEspacial) {
+        this.ativoEspacial = ativoEspacial;
+    }
+
+    public LocalDateTime getDataRegistro() {
+        return dataRegistro;
+    }
+
+    public void setDataRegistro(LocalDateTime dataRegistro) {
+        this.dataRegistro = dataRegistro;
+    }
+
+    public String getClima() {
+        return clima;
+    }
+
 
 }
