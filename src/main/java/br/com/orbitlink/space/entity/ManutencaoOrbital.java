@@ -16,5 +16,13 @@ import java.time.LocalDateTime;
 @Entity
 @Table(name = "TBL_MANUTENCAO_ORBITAL")
 public class ManutencaoOrbital {
+    @Id
+    @SequenceGenerator(name = "seq_manutencao_orbital", sequenceName = "SEQ_MANUTENCAO_ORBITAL", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_manutencao_orbital")
+    @Column(name = "ID")
+    private Long id;
+
+
+    
 
 }
