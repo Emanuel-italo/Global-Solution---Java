@@ -49,6 +49,21 @@ public class AlertaOrbitalService {
     public List<AlertaOrbitalResponse> listarPorAtivoId(Long ativoId) {
         return alertaOrbitalRepository.buscarPorAtivoId(ativoId).stream().map(this::toResponse).toList();
     }
+
+        @Transactional
+    public AlertaOrbitalResponse atualizar(Long id, AlertaOrbitalRequest request) {
+        AlertaOrbital entidade = buscarEntidadeOuFalhar(id);
+        AtivoEspacial ativo = ativoEspacialService.buscarEntidadeOuFalhar(request.ativoId());
+
+        entidade.setAtivoEspacial(ativo);
+        entidade.setTipoAlerta(request.tipoAlerta());
+        entidade.setCriticidade(request.criticidade());
+        entidade.setMensagem(request.mensagem());
+        entidade.setDataGeracao(request.dataGeracao());
+        entidade.setResolvido(request.resolvido());
+
+        return toResponse(alertaOrbitalRepository.save(entidade));
+    }
     
     }
 
