@@ -75,6 +75,20 @@ public class AlertaOrbitalService {
                 .orElseThrow(() -> new EntidadeNaoLocalizadaException("Alerta orbital não encontrado com id " + id));
     }
 
+        private AlertaOrbitalResponse toResponse(AlertaOrbital entidade) {
+        return new AlertaOrbitalResponse(
+                entidade.getId(),
+                entidade.getAtivoEspacial().getId(),
+                entidade.getAtivoEspacial().getNome(),
+                entidade.getTipoAlerta(),
+                entidade.getCriticidade(),
+                entidade.getMensagem(),
+                entidade.getDataGeracao(),
+                entidade.getResolvido()
+        );
+    }
+}
+
     }
 
 
