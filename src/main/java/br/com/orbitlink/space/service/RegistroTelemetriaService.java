@@ -73,4 +73,9 @@ public class RegistroTelemetriaService {
         registroTelemetriaRepository.delete(entidade);
     }
 
+        private RegistroTelemetria buscarEntidadeOuFalhar(Long id) {
+        return registroTelemetriaRepository.buscarComAtivoPorId(id)
+                .orElseThrow(() -> new EntidadeNaoLocalizadaException("Registro de telemetria não encontrado com id " + id));
+    }
+
 }
