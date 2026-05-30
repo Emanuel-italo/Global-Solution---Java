@@ -81,6 +81,14 @@ public class AlertaOrbital {
         return tipoAlerta;
     }
 
+    public void setTipoAlerta(TipoAlertaEnum tipoAlerta) {
+        this.tipoAlerta = tipoAlerta;
+    }
+
+    public CriticidadeAlertaEnum getCriticidade() {
+        return criticidade;
+    }
+
 
     
 
