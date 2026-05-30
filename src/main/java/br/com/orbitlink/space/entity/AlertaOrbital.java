@@ -101,7 +101,19 @@ public class AlertaOrbital {
         this.mensagem = mensagem;
     }
 
+    public LocalDateTime getDataGeracao() {
+        return dataGeracao;
+    }
 
-    
+    public void setDataGeracao(LocalDateTime dataGeracao) {
+        this.dataGeracao = dataGeracao;
+    }
 
+    public Boolean getResolvido() {
+        return resolvido;
+    }
+
+    public void setResolvido(Boolean resolvido) {
+        this.resolvido = resolvido;
+    }
 }
