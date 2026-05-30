@@ -1,75 +1,27 @@
 package br.com.orbitlink.space.config;
-
-import br.com.orbitlink.space.dto.*;
-import br.com.orbitlink.space.enums.CriticidadeAlertaEnum;
-import br.com.orbitlink.space.enums.TipoAlertaEnum;
-import br.com.orbitlink.space.enums.TipoAtivoEnum;
-import br.com.orbitlink.space.service.AlertaOrbitalService;
-import br.com.orbitlink.space.service.AtivoEspacialService;
-import br.com.orbitlink.space.service.ManutencaoOrbitalService;
-import br.com.orbitlink.space.service.RegistroTelemetriaService;
+import br.com.orbitlink.space.security.Usuario;
+import br.com.orbitlink.space.security.UsuarioRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-
-import java.math.BigDecimal;
-import java.time.LocalDateTime;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Configuration
-public class DadosIniciaisConfig {
+public class DadosIniciaisConfig implements CommandLineRunner {
 
-    @Bean
-    CommandLineRunner popularBanco(
-            AtivoEspacialService ativoEspacialService,
-            ManutencaoOrbitalService manutencaoOrbitalService,
-            RegistroTelemetriaService registroTelemetriaService,
-            AlertaOrbitalService alertaOrbitalService
-    ) {
-        return args -> {
-            if (!ativoEspacialService.listarTodos().isEmpty()) {
-                return;
-            }
+    @Autowired
+    private UsuarioRepository usuarioRepository;
 
-            // Ajustado para refletir o novo AtivoEspacialRequest
-            AtivoEspacialResponse hub = ativoEspacialService.criar(new AtivoEspacialRequest(
-                    "OrbitLink Hub-01",
-                    TipoAtivoEnum.SATELITE,
-                    "Agência Brasileira de Observação Orbital"
-            ));
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
-            // Ajustado para refletir o novo AtivoEspacialRequest
-            AtivoEspacialResponse scout = ativoEspacialService.criar(new AtivoEspacialRequest(
-                    "Scout Lunar-7",
-                    TipoAtivoEnum.SONDA,
-                    "Consórcio Espacial Sul-Americano"
-            ));
-
-            manutencaoOrbitalService.criar(new ManutencaoOrbitalRequest(
-                    hub.id(),
-                    LocalDateTime.now().minusDays(7),
-                    "Correção de alinhamento solar e revisão de painéis de energia.",
-                    new BigDecimal("18500.00")
-            ));
-
-            registroTelemetriaService.criar(new RegistroTelemetriaRequest(
-                    hub.id(),
-                    LocalDateTime.now().minusHours(4),
-                    "Céu limpo com baixa interferência eletromagnética",
-                    "Sinal estável e em alta disponibilidade",
-                    -23.550520,
-                    -46.633308,
-                    550, // Confirme se no seu projeto este campo é double ou int
-                    "Telemetry health normal"
-            ));
-
-            alertaOrbitalService.criar(new AlertaOrbitalRequest(
-                    scout.id(),
-                    TipoAlertaEnum.RISCO_COLISAO,
-                    CriticidadeAlertaEnum.ALTA,
-                    "Possível aproximação com microdetritos na órbita de transferência.",
-                    LocalDateTime.now().minusMinutes(35),
-                    false
-            ));
-        };
+    @Override
+    public void run(String... args) throws Exception {
+        if (usuarioRepository.count() == 0) {
+            Usuario admin = new Usuario();
+            admin.setLogin("admin@orbitlink.com");
+            admin.setSenha(passwordEncoder.encode("123456"));
+            usuarioRepository.save(admin);
+        }
     }
 }
