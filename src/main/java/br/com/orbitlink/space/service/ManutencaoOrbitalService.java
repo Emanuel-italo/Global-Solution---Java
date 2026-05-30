@@ -22,4 +22,17 @@ public class ManutencaoOrbitalService {
         this.ativoEspacialService = ativoEspacialService;
     }
 
+        @Transactional
+    public ManutencaoOrbitalResponse criar(ManutencaoOrbitalRequest request) {
+        AtivoEspacial ativo = ativoEspacialService.buscarEntidadeOuFalhar(request.ativoId());
+
+        ManutencaoOrbital entidade = new ManutencaoOrbital();
+        entidade.setAtivoEspacial(ativo);
+        entidade.setDataManutencao(request.dataManutencao());
+        entidade.setDescricao(request.descricao());
+        entidade.setCustoEstimado(request.custoEstimado());
+
+        return toResponse(manutencaoOrbitalRepository.save(entidade));
+    }
+
 }
