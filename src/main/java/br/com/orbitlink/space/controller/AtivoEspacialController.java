@@ -8,14 +8,13 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.EntityModel;
-import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
 
-// Importação estática essencial para o HATEOAS
+// Importações estáticas para o HATEOAS
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
@@ -30,10 +29,12 @@ public class AtivoEspacialController {
     @PostMapping
     @Operation(summary = "Cadastrar um novo Ativo Espacial", description = "Persiste um ativo no banco de dados e retorna o recurso criado com HATEOAS.")
     public ResponseEntity<EntityModel<AtivoEspacialResponse>> cadastrar(@RequestBody @Valid AtivoEspacialRequest request) {
-        AtivoEspacialResponse response = service.cadastrar(request);
+        // Correção: alterado de "cadastrar" para "criar" para corresponder ao Service
+        AtivoEspacialResponse response = service.criar(request);
 
+        // Correção: alterado de "response.getId()" para "response.id()" por ser um Record
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
-                .path("/{id}").buildAndExpand(response.getId()).toUri();
+                .path("/{id}").buildAndExpand(response.id()).toUri();
 
         return ResponseEntity.created(uri).body(adicionarLinks(response));
     }
@@ -49,11 +50,8 @@ public class AtivoEspacialController {
     private EntityModel<AtivoEspacialResponse> adicionarLinks(AtivoEspacialResponse response) {
         EntityModel<AtivoEspacialResponse> model = EntityModel.of(response);
 
-        // Link para o próprio recurso (Self)
-        model.add(linkTo(methodOn(AtivoEspacialController.class).buscarPorId(response.getId())).withSelfRel());
-
-        // Link para a listagem (opcional, caso tenha um findAll implementado)
-        // model.add(linkTo(methodOn(AtivoEspacialController.class).listarTodos()).withRel("todos-ativos"));
+        // Correção: alterado de "response.getId()" para "response.id()" por ser um Record
+        model.add(linkTo(methodOn(AtivoEspacialController.class).buscarPorId(response.id())).withSelfRel());
 
         return model;
     }
