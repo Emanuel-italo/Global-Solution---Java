@@ -48,4 +48,20 @@ public class AlertaOrbital {
     @Column(name = "RESOLVIDO", nullable = false)
     private Boolean resolvido = Boolean.FALSE;
 
+    public AlertaOrbital() {
+    }
+
+    public AlertaOrbital(Long id, AtivoEspacial ativoEspacial, TipoAlertaEnum tipoAlerta, CriticidadeAlertaEnum criticidade, String mensagem, LocalDateTime dataGeracao, Boolean resolvido) {
+        this.id = id;
+        this.ativoEspacial = ativoEspacial;
+        this.tipoAlerta = tipoAlerta;
+        this.criticidade = criticidade;
+        this.mensagem = mensagem;
+        this.dataGeracao = dataGeracao;
+        this.resolvido = resolvido;
+    }
+
+
+    
+
 }
