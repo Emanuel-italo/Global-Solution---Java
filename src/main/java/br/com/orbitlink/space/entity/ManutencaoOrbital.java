@@ -29,6 +29,9 @@ public class ManutencaoOrbital {
     @Column(name = "DATA_MANUTENCAO", nullable = false)
     private LocalDateTime dataManutencao;
 
+    @Column(name = "DESCRICAO", nullable = false, length = 2000)
+    private String descricao;
+
     
 
 }
