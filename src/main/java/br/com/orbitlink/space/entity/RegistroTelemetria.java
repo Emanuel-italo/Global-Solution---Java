@@ -40,4 +40,7 @@ public class RegistroTelemetria {
     @Column(name = "LONGITUDE", nullable = false)
     private Double longitude;
 
+    @Column(name = "OBSERVACAO_GPS", length = 1000)
+    private String observacaoGps;
+
 }
