@@ -17,7 +17,7 @@ import java.time.LocalDateTime;
 
 @Configuration
 public class DadosIniciaisConfig {
-    
+
     @Bean
     CommandLineRunner popularBanco(
             AtivoEspacialService ativoEspacialService,
@@ -30,7 +30,7 @@ public class DadosIniciaisConfig {
                 return;
             }
 
-    // Ajustado para refletir o novo AtivoEspacialRequest
+            // Ajustado para refletir o novo AtivoEspacialRequest
             AtivoEspacialResponse hub = ativoEspacialService.criar(new AtivoEspacialRequest(
                     "OrbitLink Hub-01",
                     TipoAtivoEnum.SATELITE,
