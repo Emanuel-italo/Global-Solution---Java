@@ -51,4 +51,17 @@ public class RegistroTelemetriaService {
         return registroTelemetriaRepository.buscarPorAtivoId(ativoId).stream().map(this::toResponse).toList();
     }
 
+    @Transactional
+    public RegistroTelemetriaResponse atualizar(Long id, RegistroTelemetriaRequest request) {
+        RegistroTelemetria entidade = buscarEntidadeOuFalhar(id);
+        AtivoEspacial ativo = ativoEspacialService.buscarEntidadeOuFalhar(request.ativoId());
+
+        entidade.setAtivoEspacial(ativo);
+        entidade.setDataRegistro(request.dataRegistro());
+        entidade.setClima(request.clima());
+        entidade.setSinal(request.sinal());
+    
+    
+    }
+
 }
