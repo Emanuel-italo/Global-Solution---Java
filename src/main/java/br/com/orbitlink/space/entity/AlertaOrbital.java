@@ -89,6 +89,18 @@ public class AlertaOrbital {
         return criticidade;
     }
 
+    public void setCriticidade(CriticidadeAlertaEnum criticidade) {
+        this.criticidade = criticidade;
+    }
+
+    public String getMensagem() {
+        return mensagem;
+    }
+
+    public void setMensagem(String mensagem) {
+        this.mensagem = mensagem;
+    }
+
 
     
 
