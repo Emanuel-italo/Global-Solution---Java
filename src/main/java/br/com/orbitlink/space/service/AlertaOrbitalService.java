@@ -20,6 +20,7 @@ public class AlertaOrbitalService {
     public AlertaOrbitalService(AlertaOrbitalRepository alertaOrbitalRepository, AtivoEspacialService ativoEspacialService) {
         this.alertaOrbitalRepository = alertaOrbitalRepository;
         this.ativoEspacialService = ativoEspacialService;
+    }
 
     @Transactional
     public AlertaOrbitalResponse criar(AlertaOrbitalRequest request) {
@@ -34,8 +35,9 @@ public class AlertaOrbitalService {
         entidade.setResolvido(request.resolvido());
 
         return toResponse(alertaOrbitalRepository.save(entidade));
+    }
 
-            @Transactional(readOnly = true)
+    @Transactional(readOnly = true)
     public AlertaOrbitalResponse buscarPorId(Long id) {
         return toResponse(buscarEntidadeOuFalhar(id));
     }
@@ -50,7 +52,7 @@ public class AlertaOrbitalService {
         return alertaOrbitalRepository.buscarPorAtivoId(ativoId).stream().map(this::toResponse).toList();
     }
 
-        @Transactional
+    @Transactional
     public AlertaOrbitalResponse atualizar(Long id, AlertaOrbitalRequest request) {
         AlertaOrbital entidade = buscarEntidadeOuFalhar(id);
         AtivoEspacial ativo = ativoEspacialService.buscarEntidadeOuFalhar(request.ativoId());
@@ -64,6 +66,7 @@ public class AlertaOrbitalService {
 
         return toResponse(alertaOrbitalRepository.save(entidade));
     }
+
     @Transactional
     public void deletar(Long id) {
         AlertaOrbital entidade = buscarEntidadeOuFalhar(id);
@@ -75,7 +78,7 @@ public class AlertaOrbitalService {
                 .orElseThrow(() -> new EntidadeNaoLocalizadaException("Alerta orbital não encontrado com id " + id));
     }
 
-        private AlertaOrbitalResponse toResponse(AlertaOrbital entidade) {
+    private AlertaOrbitalResponse toResponse(AlertaOrbital entidade) {
         return new AlertaOrbitalResponse(
                 entidade.getId(),
                 entidade.getAtivoEspacial().getId(),
@@ -86,11 +89,5 @@ public class AlertaOrbitalService {
                 entidade.getDataGeracao(),
                 entidade.getResolvido()
         );
-    }
-}
-
-    }
-
-
     }
 }
