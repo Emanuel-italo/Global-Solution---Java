@@ -37,5 +37,9 @@ public class RegistroTelemetriaService {
 
         return toResponse(registroTelemetriaRepository.save(entidade));
     }
+        @Transactional(readOnly = true)
+    public RegistroTelemetriaResponse buscarPorId(Long id) {
+        return toResponse(buscarEntidadeOuFalhar(id));
+    }
 
 }
