@@ -41,4 +41,11 @@ public class AlertaOrbital {
     @Column(name = "MENSAGEM", nullable = false, length = 2000)
     private String mensagem;
 
+
+    @Column(name = "DATA_GERACAO", nullable = false)
+    private LocalDateTime dataGeracao;
+
+    @Column(name = "RESOLVIDO", nullable = false)
+    private Boolean resolvido = Boolean.FALSE;
+
 }
