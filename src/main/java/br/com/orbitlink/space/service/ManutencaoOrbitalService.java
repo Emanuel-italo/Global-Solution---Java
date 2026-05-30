@@ -35,4 +35,9 @@ public class ManutencaoOrbitalService {
         return toResponse(manutencaoOrbitalRepository.save(entidade));
     }
 
+        @Transactional(readOnly = true)
+    public ManutencaoOrbitalResponse buscarPorId(Long id) {
+        return toResponse(buscarEntidadeOuFalhar(id));
+    }
+
 }
