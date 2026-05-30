@@ -8,6 +8,7 @@ API REST desenvolvida em **Java + Spring Boot** para a **Global Solution 2026/1 
 
 ## 📑 Sumário
 
+- [Links do projeto](#-links-do-projeto)
 - [Visão geral](#-visão-geral)
 - [Tecnologias](#-tecnologias)
 - [Arquitetura](#-arquitetura)
@@ -19,6 +20,20 @@ API REST desenvolvida em **Java + Spring Boot** para a **Global Solution 2026/1 
 - [Como testar](#-como-testar)
 - [Tratamento de erros](#-tratamento-de-erros)
 - [Autores](#-autores)
+
+---
+
+## 🔗 Links do projeto
+
+| Recurso | Link |
+|---------|------|
+| 💻 Repositório (GitHub) | https://github.com/Emanuel-italo/Global-Solution---Java |
+| 🚀 API em produção (Render) | https://global-solution-java-2.onrender.com |
+| 📖 Documentação Swagger | https://global-solution-java-2.onrender.com/swagger-ui/index.html |
+
+> ⚠️ **Atenção:** a instância gratuita do Render **hiberna após período de inatividade**. O primeiro acesso pode levar até ~50 segundos para "acordar" o serviço — depois disso ele responde normalmente.
+>
+> A rota raiz (`/`) retorna **403** por padrão, pois é protegida pelo Spring Security. Use o **Swagger** ou os endpoints da API com o token JWT.
 
 ---
 
@@ -57,6 +72,7 @@ A nova corrida tecnológica é a **economia espacial**. Satélites monitoram o c
 | HATEOAS | Spring HATEOAS |
 | Produtividade | Lombok, Spring Boot DevTools |
 | Build | Maven |
+| Deploy | Docker + Render |
 
 ---
 
@@ -154,6 +170,7 @@ Mapeamento direto com os critérios da disciplina **Java Advanced** da Global So
 | Spring Security + JWT | ✔️ | Pacote `security` |
 | Documentação Swagger/OpenAPI | ✔️ | `@OpenAPIDefinition`, `@Operation`, `@Tag` |
 | Configuração de CORS | ✔️ | `CorsConfig` |
+| Deploy com link público | ✔️ | Render (Docker) |
 
 > **Nota:** A camada de acesso a dados utiliza exclusivamente **Spring Data JPA** (`JpaRepository`), conforme exigido pela Global Solution. Consultas que exigem `join fetch` para evitar `LazyInitializationException` e o problema N+1 são definidas via `@Query` (JPQL) nas próprias interfaces de repositório.
 
@@ -190,6 +207,7 @@ Criado automaticamente na inicialização pelo `DadosIniciaisConfig`:
 ## 🌐 Endpoints da API
 
 Base URL local: `http://localhost:8080`
+Base URL produção: `https://global-solution-java-2.onrender.com`
 
 ### 🔑 Autenticação
 
@@ -241,9 +259,8 @@ Base URL local: `http://localhost:8080`
 
 Com a aplicação rodando, acesse o **Swagger UI**:
 
-```
-http://localhost:8080/swagger-ui.html
-```
+- Local: `http://localhost:8080/swagger-ui/index.html`
+- Produção: `https://global-solution-java-2.onrender.com/swagger-ui/index.html`
 
 ---
 
@@ -258,8 +275,8 @@ http://localhost:8080/swagger-ui.html
 
 ```bash
 # 1. Clone o repositório
-git clone <URL-DO-SEU-REPOSITORIO>
-cd orbitlink
+git clone https://github.com/Emanuel-italo/Global-Solution---Java.git
+cd Global-Solution---Java
 
 # 2. Execute a aplicação
 mvn clean spring-boot:run
@@ -268,7 +285,7 @@ mvn clean spring-boot:run
 A aplicação sobe em:
 
 - API: `http://localhost:8080`
-- Swagger UI: `http://localhost:8080/swagger-ui.html`
+- Swagger UI: `http://localhost:8080/swagger-ui/index.html`
 - Console H2: `http://localhost:8080/h2-console`
 
 ### Credenciais do banco H2
@@ -284,6 +301,8 @@ A aplicação sobe em:
 ---
 
 ## 🧪 Como testar
+
+> Os exemplos abaixo usam `localhost`. Para testar a **API em produção**, basta trocar `http://localhost:8080` por `https://global-solution-java-2.onrender.com`.
 
 ### 1. Obtenha o token
 
