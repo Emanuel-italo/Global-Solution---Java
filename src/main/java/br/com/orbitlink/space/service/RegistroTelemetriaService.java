@@ -65,8 +65,12 @@ public class RegistroTelemetriaService {
         entidade.setObservacaoGps(gerarObservacaoGps(request));
 
         return toResponse(registroTelemetriaRepository.save(entidade));
-    
-    
+    }
+
+        @Transactional
+    public void deletar(Long id) {
+        RegistroTelemetria entidade = buscarEntidadeOuFalhar(id);
+        registroTelemetriaRepository.delete(entidade);
     }
 
 }
