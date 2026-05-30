@@ -85,5 +85,39 @@ public class RegistroTelemetria {
         return clima;
     }
 
+    public void setClima(String clima) {
+        this.clima = clima;
+    }
 
+    public String getSinal() {
+        return sinal;
+    }
+
+    public void setSinal(String sinal) {
+        this.sinal = sinal;
+    }
+
+    public Double getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(Double latitude) {
+        this.latitude = latitude;
+    }
+
+    public Double getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(Double longitude) {
+        this.longitude = longitude;
+    }
+
+    public String getObservacaoGps() {
+        return observacaoGps;
+    }
+
+    public void setObservacaoGps(String observacaoGps) {
+        this.observacaoGps = observacaoGps;
+    }
 }
