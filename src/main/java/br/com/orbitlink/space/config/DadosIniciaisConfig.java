@@ -31,3 +31,17 @@ public class DadosIniciaisConfig {
             }
 
         }
+
+    // Ajustado para refletir o novo AtivoEspacialRequest
+            AtivoEspacialResponse hub = ativoEspacialService.criar(new AtivoEspacialRequest(
+                    "OrbitLink Hub-01",
+                    TipoAtivoEnum.SATELITE,
+                    "Agência Brasileira de Observação Orbital"
+            ));
+
+            // Ajustado para refletir o novo AtivoEspacialRequest
+            AtivoEspacialResponse scout = ativoEspacialService.criar(new AtivoEspacialRequest(
+                    "Scout Lunar-7",
+                    TipoAtivoEnum.SONDA,
+                    "Consórcio Espacial Sul-Americano"
+            ));
