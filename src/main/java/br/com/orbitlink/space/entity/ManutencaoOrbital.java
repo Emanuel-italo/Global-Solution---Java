@@ -74,6 +74,16 @@ public class ManutencaoOrbital {
         return descricao;
     }
 
-    
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
 
+    public BigDecimal getCustoEstimado() {
+        return custoEstimado;
+    }
+
+    public void setCustoEstimado(BigDecimal custoEstimado) {
+        this.custoEstimado = custoEstimado;
+    }
+    
 }
