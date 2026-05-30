@@ -63,6 +63,8 @@ public class RegistroTelemetriaService {
         entidade.setLatitude(request.latitude());
         entidade.setLongitude(request.longitude());
         entidade.setObservacaoGps(gerarObservacaoGps(request));
+
+        return toResponse(registroTelemetriaRepository.save(entidade));
     
     
     }
