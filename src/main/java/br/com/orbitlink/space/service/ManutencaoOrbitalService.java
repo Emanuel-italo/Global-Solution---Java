@@ -40,4 +40,9 @@ public class ManutencaoOrbitalService {
         return toResponse(buscarEntidadeOuFalhar(id));
     }
 
+        @Transactional(readOnly = true)
+    public List<ManutencaoOrbitalResponse> listarTodos() {
+        return manutencaoOrbitalRepository.buscarTodosComAtivo().stream().map(this::toResponse).toList();
+    }
+
 }
