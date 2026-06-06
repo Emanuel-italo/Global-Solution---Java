@@ -30,8 +30,9 @@ API REST desenvolvida em **Java + Spring Boot** para a **Global Solution 2026/1 
 | 💻 Repositório (GitHub) | https://github.com/Emanuel-italo/Global-Solution---Java |
 | 🚀 API em produção (Render) | https://global-solution-java-2.onrender.com |
 | 📖 Documentação Swagger | https://global-solution-java-2.onrender.com/swagger-ui/index.html |
+| 📽️ Link do video | https://www.loom.com/share/cd542939c8f84f918686aa1f0e10684e
 
-> ⚠️ **Atenção:** a instância gratuita do Render **hiberna após período de inatividade**. O primeiro acesso pode levar até ~50 segundos para "acordar" o serviço — depois disso ele responde normalmente.
+> ⚠️ **Atenção:** a instância gratuita do Render **hiberna após período de inatividade**. O primeiro acesso pode levar até ~2 minutos para "acordar" o serviço — depois disso ele responde normalmente.
 >
 > A rota raiz (`/`) retorna **403** por padrão, pois é protegida pelo Spring Security. Use o **Swagger** ou os endpoints da API com o token JWT.
 
