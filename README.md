@@ -2,6 +2,14 @@
 
 > Plataforma de gestão da **Economia Espacial** — monitoramento de ativos orbitais, telemetria, manutenção e alertas operacionais.
 
+## 👥 Autores
+
+- **Emanuel Italo Leal Trindade Soares (RM 561337)**
+- **Paulo Henrique Alves Estalise (RM 563811)**
+- **Gabriel Bebe (RM 562012)**
+
+
+
 API REST desenvolvida em **Java + Spring Boot** para a **Global Solution 2026/1 (FIAP — 2º ano de Análise e Desenvolvimento de Sistemas)**, conectando a exploração espacial a problemas reais da Terra: monitoramento climático, conectividade em regiões remotas, segurança orbital e suporte à tomada de decisão.
 
 ---
@@ -378,9 +386,9 @@ Todas as exceções retornam um JSON padronizado, montado pelo `GlobalExceptionH
 
 ## 👥 Autores
 
-- **Emanuel Italo Leal Trindade Soares**
-- **Paulo Henrique Alves Estalise**
-- **Gabriel Bebe**
+- **Emanuel Italo Leal Trindade Soares (RM 561337)**
+- **Paulo Henrique Alves Estalise (RM 563811)**
+- **Gabriel Bebe (RM 562012)**
 
 ---
 
